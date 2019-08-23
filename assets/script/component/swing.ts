@@ -17,11 +17,11 @@ export class Swing extends cc.Component {
     private lag: number = 0;
     private direction: number = SwingDirection.Clockwise;
 
-    protected start () {
+    protected start (): void {
 
     }
 
-    protected update (dt: number) {
+    protected update (dt: number): void {
         this.lag += dt * 1000;
         while (this.lag >= this.ms_per_update) {
             this.fixedUpdate(this.ms_per_update);
@@ -29,7 +29,7 @@ export class Swing extends cc.Component {
         }
     }
 
-    protected fixedUpdate(dt: number) {
+    protected fixedUpdate(dt: number): void {
         this.swingNode();
     }
 

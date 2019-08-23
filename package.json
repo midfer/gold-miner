@@ -1,0 +1,19 @@
+{
+  "name": "gold-miner",
+  "version": "0.1",
+  "description": "黄金矿工",
+  "main": "game.ts",
+  "repository": "https://github.com/midfer/gold-miner.git",
+  "author": "midf",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
