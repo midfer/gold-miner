@@ -50,3 +50,15 @@ describe('updateSwingDirection', () => {
         expect(sw.direction).not.toEqual(SwingDirection.CounterClockwise);
     });
 });
+
+describe('swingNode', () => {
+    test('swingNode会调用一次updateNodeAngle和一次updateSwingDirection', () => {
+        let sw = new Swing();
+        const spyUpdataAngle = jest.spyOn(sw, 'updateNodeAngle');
+        const spyUpdateDirection = jest.spyOn(sw, 'updateSwingDirection');
+        sw.swingNode();
+        
+        expect(spyUpdataAngle).toBeCalledTimes(1);
+        expect(spyUpdateDirection).toBeCalledTimes(1);
+    });
+});
