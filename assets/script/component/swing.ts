@@ -1,12 +1,12 @@
-const {ccclass, property} = cc._decorator;
+import { ccclass, property, XComponent } from "../ccengine";
 
-enum SwingDirection {
+export enum SwingDirection {
     Clockwise = -1,
     CounterClockwise = 1,
 }
 
 @ccclass
-export class Swing extends cc.Component {
+export class Swing extends XComponent {
     @property
     public speed: number = 1;                   // 摆动速度
     @property
@@ -14,8 +14,8 @@ export class Swing extends cc.Component {
     @property
     public ms_per_update: number = 20;          // 更新间隔 ms
 
-    private lag: number = 0;
-    private direction: number = SwingDirection.Clockwise;
+    public lag: number = 0;
+    public direction: number = SwingDirection.Clockwise;
 
     protected start (): void {
 
@@ -33,14 +33,21 @@ export class Swing extends cc.Component {
         this.swingNode();
     }
 
-    private swingNode() {
+    public swingNode(): void {
+        this.updateSwingDirection();
+        this.updateNodeAngle();
+    }
+    
+    public updateSwingDirection(): void {
         if (this.node.angle >= this.swingRange) {
             this.direction = SwingDirection.Clockwise;
         }
         else if (this.node.angle <= -this.swingRange) {
             this.direction = SwingDirection.CounterClockwise;
         }
-
+    }
+    
+    public updateNodeAngle(): void {
         this.node.angle += this.direction * this.speed;
     }
 }
