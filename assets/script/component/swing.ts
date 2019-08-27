@@ -1,3 +1,9 @@
+/*
+ * Description: 摆动组件
+ * File: swing.ts
+ * Date: 2019-08-22 18:17:46
+ * Author: midf
+ */
 import { ccclass, property, XComponent } from "../ccengine";
 
 export enum SwingDirection {
@@ -30,15 +36,15 @@ export class Swing extends XComponent {
     }
 
     protected fixedUpdate(dt: number): void {
-        this.swingNode();
+        // this.swingNode();
     }
 
-    public swingNode(): void {
+    private swingNode(): void {
         this.updateSwingDirection();
         this.updateNodeAngle();
     }
     
-    public updateSwingDirection(): void {
+    private updateSwingDirection(): void {
         if (this.node.angle >= this.swingRange) {
             this.direction = SwingDirection.Clockwise;
         }
@@ -47,7 +53,7 @@ export class Swing extends XComponent {
         }
     }
     
-    public updateNodeAngle(): void {
+    private updateNodeAngle(): void {
         this.node.angle += this.direction * this.speed;
     }
 }

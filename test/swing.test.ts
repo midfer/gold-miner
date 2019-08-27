@@ -9,7 +9,7 @@ jest.mock('../assets/script/ccengine', () => {
 
 describe('updateNodeAngle', () => {
     test('顺时针摆动时node的角度减小', () => {
-        let sw = new Swing();
+        let sw: any = new Swing();
         let srcAngle = 30;
         sw.node.angle = srcAngle;
         sw.direction = SwingDirection.Clockwise;
@@ -18,7 +18,7 @@ describe('updateNodeAngle', () => {
         expect(sw.node.angle).toBeLessThan(srcAngle);
     });
     test('逆时针摆动时node的角度变大', () => {
-        let sw = new Swing();
+        let sw: any = new Swing();
         let srcAngle = 30;
         sw.node.angle = srcAngle;
         sw.direction = SwingDirection.CounterClockwise;
@@ -30,7 +30,7 @@ describe('updateNodeAngle', () => {
 
 describe('updateSwingDirection', () => {
     test('如果node的角度超过摆动范围是，需要将摆动方向变为反方向(顺时针)', () => {
-        let sw = new Swing();
+        let sw: any = new Swing();
         let swingRange = 90;
         sw.node.angle = -sw.swingRange;
         sw.swingRange = swingRange;
@@ -40,7 +40,7 @@ describe('updateSwingDirection', () => {
         expect(sw.direction).not.toEqual(SwingDirection.Clockwise);
     });
     test('如果node的角度超过摆动范围是，需要将摆动方向变为反方向(逆时针)', () => {
-        let sw = new Swing();
+        let sw: any = new Swing();
         let swingRange = 90;
         sw.node.angle = sw.swingRange;
         sw.swingRange = swingRange;
@@ -52,8 +52,8 @@ describe('updateSwingDirection', () => {
 });
 
 describe('swingNode', () => {
-    test('swingNode会调用一次updateNodeAngle和一次updateSwingDirection', () => {
-        let sw = new Swing();
+    test('会调用一次updateNodeAngle和一次updateSwingDirection', () => {
+        let sw: any = new Swing();
         const spyUpdataAngle = jest.spyOn(sw, 'updateNodeAngle');
         const spyUpdateDirection = jest.spyOn(sw, 'updateSwingDirection');
         sw.swingNode();
