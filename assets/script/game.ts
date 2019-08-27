@@ -13,7 +13,7 @@ export class Game extends cc.Component {
     debug: boolean = false;
 
     onLoad () {
-
+        this.setupCollisionSystem();
     }
 
     start () {
@@ -22,5 +22,11 @@ export class Game extends cc.Component {
 
     update (dt: number) {
 
+    }
+
+    private setupCollisionSystem(): void {
+        let collisionMgr = cc.director.getCollisionManager();
+        collisionMgr.enabled = true;
+        collisionMgr.enabledDebugDraw = this.debug;
     }
 }
