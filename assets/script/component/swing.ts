@@ -4,7 +4,7 @@
  * Date: 2019-08-22 18:17:46
  * Author: midf
  */
-import { ccclass, property, XComponent } from "../ccengine";
+import { ccclass, property, XComponent } from '../ccengine';
 
 export enum SwingDirection {
     Clockwise = -1,
@@ -23,11 +23,11 @@ export class Swing extends XComponent {
     public lag: number = 0;
     public direction: number = SwingDirection.Clockwise;
 
-    protected start (): void {
+    protected start(): void {
 
     }
 
-    protected update (dt: number): void {
+    protected update(dt: number): void {
         this.lag += dt * 1000;
         while (this.lag >= this.ms_per_update) {
             this.fixedUpdate(this.ms_per_update);
@@ -43,7 +43,7 @@ export class Swing extends XComponent {
         this.updateSwingDirection();
         this.updateNodeAngle();
     }
-    
+
     private updateSwingDirection(): void {
         if (this.node.angle >= this.swingRange) {
             this.direction = SwingDirection.Clockwise;
@@ -52,7 +52,7 @@ export class Swing extends XComponent {
             this.direction = SwingDirection.CounterClockwise;
         }
     }
-    
+
     private updateNodeAngle(): void {
         this.node.angle += this.direction * this.speed;
     }
