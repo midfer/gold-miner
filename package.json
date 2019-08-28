@@ -9,6 +9,11 @@
   "private": false,
   "devDependencies": {
     "@types/jest": "^24.0.18",
+    "@typescript-eslint/eslint-plugin": "1.13.0",
+    "@typescript-eslint/parser": "1.13.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.2.2",
+    "eslint-config-alloy": "^2.0.5",
     "jest": "^24.9.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
