@@ -1,3 +1,5 @@
+import { EventMgr } from './manager/event-mgr';
+
 /*
  * Description:
  * File: game.ts
@@ -5,22 +7,24 @@
  * Author: midf
  */
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export class Game extends cc.Component {
     @property
-    debug: boolean = false;
+    public debug: boolean = false;
 
-    onLoad () {
+    protected onLoad(): void {
+        cc.game.addPersistRootNode(this.node);
         this.setupCollisionSystem();
+        this.setupManagers();
     }
 
-    start () {
+    protected start(): void {
 
     }
 
-    update (dt: number) {
+    protected update(dt: number): void {
 
     }
 
@@ -28,5 +32,9 @@ export class Game extends cc.Component {
         let collisionMgr = cc.director.getCollisionManager();
         collisionMgr.enabled = true;
         collisionMgr.enabledDebugDraw = this.debug;
+    }
+
+    private setupManagers(): void {
+        EventMgr.setup();
     }
 }

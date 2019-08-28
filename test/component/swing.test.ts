@@ -1,7 +1,7 @@
-import { MXComponent } from "../assets/script/mock/mock-ccengine";
-import { SwingDirection, Swing } from "../assets/script/component/swing";
+import { MXComponent } from '../../assets/script/mock/mock-ccengine';
+import { SwingDirection, Swing } from '../../assets/script/component/swing';
 
-jest.mock('../assets/script/ccengine', () => {
+jest.mock('../../assets/script/ccengine', () => {
     return {
         XComponent: MXComponent,
     };
@@ -57,7 +57,7 @@ describe('swingNode', () => {
         const spyUpdataAngle = jest.spyOn(sw, 'updateNodeAngle');
         const spyUpdateDirection = jest.spyOn(sw, 'updateSwingDirection');
         sw.swingNode();
-        
+
         expect(spyUpdataAngle).toBeCalledTimes(1);
         expect(spyUpdateDirection).toBeCalledTimes(1);
     });
