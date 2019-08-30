@@ -29,6 +29,9 @@ module.exports = {
         '@typescript-eslint/no-inferrable-types': 'off',
         '@typescript-eslint/typedef': [
             'error',
+            {
+                'variableDeclaration': true,    // 变量需要声明类型
+            }
         ],
         '@typescript-eslint/ban-types': [
             'error',
