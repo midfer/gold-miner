@@ -11,20 +11,20 @@ export interface XEventCallback {
 }
 
 export class EventMgr {
-    private static events: Map<symbol, Array<XEventCallback>>;
+    private static events: Map<string, Array<XEventCallback>>;
     public static setup(): void {
-        this.events = new Map<symbol, Array<XEventCallback>>();
+        this.events = new Map<string, Array<XEventCallback>>();
     }
 
     public static clear(): void {
         this.events.clear();
     }
 
-    public static has(eventType: symbol): boolean {
+    public static has(eventType: string): boolean {
         return this.events.has(eventType);
     }
 
-    public static on(eventType: symbol, listener: Function, context?: any): void {
+    public static on(eventType: string, listener: Function, context?: any): void {
         if (!this.has(eventType)) {
             this.events.set(eventType, []);
         }
@@ -33,7 +33,7 @@ export class EventMgr {
         this.events.get(eventType).push(event);
     }
 
-    public static off(eventType: symbol, listener: Function, context?: any): void {
+    public static off(eventType: string, listener: Function, context?: any): void {
         if (!this.has(eventType)) {
             return;
         }
@@ -47,7 +47,7 @@ export class EventMgr {
         }
     }
 
-    public static dispatch(eventType: symbol, ...args: any[]): void {
+    public static dispatch(eventType: string, ...args: any[]): void {
         if (!this.has(eventType)) {
             return;
         }
@@ -66,7 +66,7 @@ export class EventMgr {
         return callback;
     }
 
-    private static getEventCallbacks(eventType: symbol): Array<XEventCallback> {
+    private static getEventCallbacks(eventType: string): Array<XEventCallback> {
         if (!this.has(eventType)) {
             return [];
         }

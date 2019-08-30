@@ -1,3 +1,10 @@
+/*
+ * Description: swing组件的单元测试
+ * File: swing.test.ts
+ * Date: 2019-08-26 10:50:01
+ * Author: midf
+ */
+
 import { MXComponent } from '../../assets/script/mock/mock-ccengine';
 import { SwingDirection, Swing } from '../../assets/script/component/swing';
 
