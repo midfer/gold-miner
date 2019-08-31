@@ -5,6 +5,7 @@
  * Author: midf
  */
 import { ccclass, property, XComponent } from '../ccengine';
+import { EXComponent } from '../define/engine/ex-component';
 
 export enum SwingDirection {
     Clockwise = -1,
@@ -12,15 +13,12 @@ export enum SwingDirection {
 }
 
 @ccclass
-export class Swing extends XComponent {
+export class Swing extends EXComponent {
     @property
     public speed: number = 1;                   // 摆动速度
     @property
     public swingRange: number = 90;             // 摆动角度
-    @property
-    public ms_per_update: number = 20;          // 更新间隔 ms
 
-    public lag: number = 0;
     public direction: number = SwingDirection.Clockwise;
 
     protected start(): void {
@@ -28,14 +26,11 @@ export class Swing extends XComponent {
     }
 
     protected update(dt: number): void {
-        this.lag += dt * 1000;
-        while (this.lag >= this.ms_per_update) {
-            this.fixedUpdate(this.ms_per_update);
-            this.lag -= this.ms_per_update;
-        }
+        super.update(dt);
     }
 
     protected fixedUpdate(dt: number): void {
+        super.fixedUpdate(dt);
         // this.swingNode();
     }
 
