@@ -4,8 +4,11 @@
  * Date: 2019-08-22 18:17:46
  * Author: midf
  */
-import { ccclass, property, XComponent } from '../ccengine';
+
+import { ccclass, property } from '../ccengine';
 import { EXComponent } from '../define/engine/ex-component';
+import { EventMgr } from '../manager/event-mgr';
+import { XUIEvent } from '../define/event/ui-event';
 
 export enum SwingDirection {
     Clockwise = -1,
@@ -19,10 +22,11 @@ export class Swing extends EXComponent {
     @property
     public swingRange: number = 90;             // 摆动角度
 
-    public direction: number = SwingDirection.Clockwise;
+    private direction: number = SwingDirection.Clockwise;
+    private stopped: boolean = false;
 
-    protected start(): void {
-
+    protected onLoad(): void {
+        EventMgr.on(XUIEvent.ClickShootBtn, this.stopSwing, this);
     }
 
     protected update(dt: number): void {
@@ -31,10 +35,14 @@ export class Swing extends EXComponent {
 
     protected fixedUpdate(dt: number): void {
         super.fixedUpdate(dt);
-        // this.swingNode();
+        this.swingNode();
     }
 
     private swingNode(): void {
+        if (this.stopped) {
+            return;
+        }
+
         this.updateSwingDirection();
         this.updateNodeAngle();
     }
@@ -50,5 +58,9 @@ export class Swing extends EXComponent {
 
     private updateNodeAngle(): void {
         this.node.angle += this.direction * this.speed;
+    }
+
+    private stopSwing(): void {
+        this.stopped = true;
     }
 }

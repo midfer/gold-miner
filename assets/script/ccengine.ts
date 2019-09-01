@@ -2,3 +2,11 @@ export const ccclass: Function = cc._decorator.ccclass;
 export const property: Function = cc._decorator.property;
 export class XComponent extends cc.Component {}
 export class XCollider extends cc.Collider {}
+export class XCollisionManager extends cc.CollisionManager {}
+export class XVec2 extends cc.Vec2 {}
+export class XNode extends cc.Node {}
+export class XSystemEvent extends cc.SystemEvent {}
+export const xSystemEvent: XSystemEvent = cc.systemEvent;
+export class XEvent extends cc.Event {}
+export class XEventKeyboard extends cc.Event.EventKeyboard {}
+export class XMacro extends cc.macro {}
