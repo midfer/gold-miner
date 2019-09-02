@@ -1,12 +1,12 @@
 
 import { createComponent } from '../utils';
-import { Ply } from '../../assets/script/component/catch';
+import { Catch } from '../../assets/script/component/catch';
 import { XVec2 } from '../../assets/script/ccengine';
 
 describe('go', () => {
-    var comp: Ply;
+    var comp: Catch;
     beforeEach(() => {
-        comp = createComponent(Ply);
+        comp = createComponent(Catch);
     });
 
     test('角度为45时，速度应该近似等于Vec(1, -1).normalize()', () => {
@@ -39,9 +39,9 @@ describe('go', () => {
 });
 
 describe('back', () => {
-    var comp: Ply;
+    var comp: Catch;
     beforeEach(() => {
-        comp = createComponent(Ply);
+        comp = createComponent(Catch);
     });
 
     test('速度应该变为反方向', () => {
@@ -55,9 +55,9 @@ describe('back', () => {
 });
 
 describe('exceedMaxDistance', () => {
-    var comp: Ply;
+    var comp: Catch;
     beforeEach(() => {
-        comp = createComponent(Ply);
+        comp = createComponent(Catch);
         comp['originPos'] = new XVec2(0, 0);
     });
 
@@ -79,7 +79,7 @@ describe('exceedMaxDistance', () => {
 describe('updatePosition', () => {
     var ply: any;
     beforeEach(() => {
-        ply = createComponent(Ply);
+        ply = createComponent(Catch);
         ply['originPos'] = new XVec2(0, 0);
         ply.speed = 10;
         ply.maxDistance = 200;

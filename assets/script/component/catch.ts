@@ -1,38 +1,45 @@
 /*
-* Description: 往返组件
-* File: ply.ts
-* Date: 2019-08-27 17:48:48
-* Author: midf
-*/
+ * Description: 抓取组件
+ * File: catch.ts
+ * Date: 2019-09-02 10:19:25
+ * Author: midf
+ */
 
 import { EXComponent } from './../define/engine/ex-component';
-import { ccclass, property, XCollider, XVec2 } from '../ccengine';
+import { ccclass, property, XCollider, XVec2, XNode } from '../ccengine';
 import { EventMgr } from '../manager/event-mgr';
 import { XUIEvent } from '../define/event/ui-event';
 import { Follow } from './follow';
+import { MapItem } from './map-item';
 
 @ccclass
-export class Ply extends EXComponent {
+export class Catch extends EXComponent {
     @property
     public speed: number = 1;
-
     @property
     public maxDistance: number = 200;
 
-    private times: number = 1;
     private velocity: XVec2 = XVec2.ZERO;
     private originPos: XVec2;
+    private target: MapItem;
+
+    public getSpeed(): number {
+        if (this.target) {
+            return this.speed / this.target.weight;
+        }
+
+        return this.speed;
+    }
 
     public onCollisionEnter(other: XCollider, self: XCollider): void {
         this.back();
-        let fwComp: Follow = other.node.getComponent(Follow);
-        fwComp.bind(this.node);
-        fwComp.setSpeed(this.speed);
+        this.target = other.node.getComponent(MapItem);
+        this.target.caught();
     }
 
     protected onLoad(): void {
-        EventMgr.on(XUIEvent.ClickShootBtn, this.go, this);
         this.originPos = this.node.position;
+        EventMgr.on(XUIEvent.ClickShootBtn, this.go, this);
     }
 
     protected update(dt: number): void {
@@ -45,8 +52,12 @@ export class Ply extends EXComponent {
     }
 
     private updatePosition(): void {
-        this.node.x += this.velocity.x * this.speed;
-        this.node.y += this.velocity.y * this.speed;
+        this.node.x += this.velocity.x * this.getSpeed();
+        this.node.y += this.velocity.y * this.getSpeed();
+        if (this.target) {
+            this.target.node.x += this.velocity.x * this.getSpeed();
+            this.target.node.y += this.velocity.y * this.getSpeed();
+        }
 
         if (this.exceedMaxDistance()) {
             this.back();
