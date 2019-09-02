@@ -1,6 +1,6 @@
 
 import { createComponent } from '../utils';
-import { Ply } from '../../assets/script/component/ply';
+import { Ply } from '../../assets/script/component/catch';
 import { XVec2 } from '../../assets/script/ccengine';
 
 describe('go', () => {
