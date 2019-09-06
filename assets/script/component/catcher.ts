@@ -12,7 +12,7 @@ import { XUIEvent } from '../define/event/ui-event';
 import { MapItem } from './map-item';
 import { XGameEvent } from '../define/event/game-event';
 
-enum CatcherState {
+export enum CatcherState {
     idle,
     going,
     backing,
@@ -137,7 +137,8 @@ export class Catcher extends EXComponent {
 
     private renew(): void {
         this.velocity = XVec2.ZERO;
-        EventMgr.dispatch(XGameEvent.CollectNothing);
+        this.changeState(CatcherState.idle);
+        EventMgr.dispatch(XGameEvent.PlyCompleted);
     }
 
     private collect(): void {
@@ -146,8 +147,8 @@ export class Catcher extends EXComponent {
     }
 
     private completeCollection(): void {
-        this.changeState(CatcherState.idle);
-        EventMgr.dispatch(XGameEvent.CollectMapItem, this.target);
+        EventMgr.dispatch(XGameEvent.CollectedMapItem, this.target);
+        this.renew();
         this.target.node.destroy();
         this.target = null;
     }

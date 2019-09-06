@@ -9,6 +9,7 @@ import { ccclass, property } from '../ccengine';
 import { EXComponent } from '../define/engine/ex-component';
 import { EventMgr } from '../manager/event-mgr';
 import { XUIEvent } from '../define/event/ui-event';
+import { XGameEvent } from '../define/event/game-event';
 
 export enum SwingDirection {
     Clockwise = -1,
@@ -27,6 +28,7 @@ export class Swing extends EXComponent {
 
     protected onLoad(): void {
         EventMgr.on(XUIEvent.ClickShootBtn, this.stopSwing, this);
+        EventMgr.on(XGameEvent.PlyCompleted, this.startSwing, this);
     }
 
     protected update(dt: number): void {
@@ -58,6 +60,10 @@ export class Swing extends EXComponent {
 
     private updateNodeAngle(): void {
         this.node.angle += this.direction * this.speed;
+    }
+
+    private startSwing(): void {
+        this.stopped = false;
     }
 
     private stopSwing(): void {
