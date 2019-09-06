@@ -7,7 +7,7 @@ export class MapItem extends EXComponent implements Catchable {
     @property
     public weight: number = 1;
 
-    public caught(): void {
+    public beenCaught(): void {
 
     }
 }

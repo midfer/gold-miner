@@ -1,12 +1,12 @@
 
 import { createComponent } from '../utils';
-import { Catch } from '../../assets/script/component/catch';
+import { Catcher } from '../../assets/script/component/catcher';
 import { XVec2 } from '../../assets/script/ccengine';
 
 describe('go', () => {
-    var comp: Catch;
+    var comp: Catcher;
     beforeEach(() => {
-        comp = createComponent(Catch);
+        comp = createComponent(Catcher);
     });
 
     test('角度为45时，速度应该近似等于Vec(1, -1).normalize()', () => {
@@ -39,9 +39,9 @@ describe('go', () => {
 });
 
 describe('back', () => {
-    var comp: Catch;
+    var comp: Catcher;
     beforeEach(() => {
-        comp = createComponent(Catch);
+        comp = createComponent(Catcher);
     });
 
     test('速度应该变为反方向', () => {
@@ -55,9 +55,9 @@ describe('back', () => {
 });
 
 describe('exceedMaxDistance', () => {
-    var comp: Catch;
+    var comp: Catcher;
     beforeEach(() => {
-        comp = createComponent(Catch);
+        comp = createComponent(Catcher);
         comp['originPos'] = new XVec2(0, 0);
     });
 
@@ -76,10 +76,10 @@ describe('exceedMaxDistance', () => {
     });
 });
 
-describe('updatePosition', () => {
+describe('updateSelfPosition', () => {
     var ply: any;
     beforeEach(() => {
-        ply = createComponent(Catch);
+        ply = createComponent(Catcher);
         ply['originPos'] = new XVec2(0, 0);
         ply.speed = 10;
         ply.maxDistance = 200;
@@ -89,7 +89,7 @@ describe('updatePosition', () => {
     test('更新后的位置应该为(0, -10)', () => {
         ply['velocity'] = new XVec2(0, -1);
         let result = new XVec2(0, -10);
-        ply['updatePosition']();
+        ply['updateSelfPosition']();
 
         expect(ply.node.x).toBeCloseTo(result.x);
         expect(ply.node.y).toBeCloseTo(result.y);
@@ -98,17 +98,9 @@ describe('updatePosition', () => {
     test('更新后的位置应该为(0, 10)', () => {
         ply['velocity'] = new XVec2(0, 1);
         let result = new XVec2(0, 10);
-        ply['updatePosition']();
+        ply['updateSelfPosition']();
 
         expect(ply.node.x).toBeCloseTo(result.x);
         expect(ply.node.y).toBeCloseTo(result.y);
-    });
-
-    test('如果更新后的位置超过最大距离，应该调用一次back函数', () => {
-        let back = jest.spyOn(ply, 'back');
-        ply['velocity'] = new XVec2(100, 100);
-        ply['updatePosition']();
-
-        expect(back).toHaveBeenCalled();
     });
 });

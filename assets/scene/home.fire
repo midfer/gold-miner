@@ -424,7 +424,7 @@
     "_id": "f4ARsgxkRJEKTdjLrt1Ut2"
   },
   {
-    "__type__": "f79a7hCbtBI2K3Sn6jM73c9",
+    "__type__": "baff5cRaAtCFZbXhdT1e8rn",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -433,7 +433,7 @@
     "_enabled": true,
     "speed": 5,
     "maxDistance": 200,
-    "_id": "b0NfCQ2PVBbKgtU7pUX1Nm"
+    "_id": "a6bBaojgtCjbr5ejAZwQaK"
   },
   {
     "__type__": "cc.Node",

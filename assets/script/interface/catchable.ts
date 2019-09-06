@@ -1,3 +1,3 @@
 export interface Catchable {
-    caught(): void;
+    beenCaught(): void;
 }

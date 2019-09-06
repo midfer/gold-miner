@@ -3,8 +3,8 @@ import { MapItem } from './map-item';
 
 @ccclass
 export class Rock extends MapItem {
-    public caught(): void {
-        super.caught();
+    public beenCaught(): void {
+        super.beenCaught();
     }
 
     protected update(dt: number): void {
