@@ -13,11 +13,13 @@ import { MapItem } from './map-item';
 import { XGameEvent } from '../define/event/game-event';
 
 export enum CatcherState {
-    idle,
-    going,
-    backing,
-    collecting,
+    idle,                       // 空闲状态
+    going,                      // 前进状态
+    backing,                    // 没抓到东西回来的状态
+    collecting,                 // 抓到东西回来的状态
 }
+
+export const POSITION_ERROR: number = 0.001;    // 坐标允许误差
 
 @ccclass
 export class Catcher extends EXComponent {
@@ -149,6 +151,10 @@ export class Catcher extends EXComponent {
     private completeCollection(): void {
         EventMgr.dispatch(XGameEvent.CollectedMapItem, this.target);
         this.renew();
+        this.destroyMapItem();
+    }
+
+    private destroyMapItem(): void {
         this.target.node.destroy();
         this.target = null;
     }
