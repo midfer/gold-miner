@@ -2,7 +2,7 @@ import { ccclass } from '../ccengine';
 import { MapItem } from './map-item';
 
 @ccclass
-export class Rock extends MapItem {
+export class MysteryBag extends MapItem {
     public beenCaught(): void {
         super.beenCaught();
     }
