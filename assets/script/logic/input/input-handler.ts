@@ -5,11 +5,11 @@
  * Author: midf
  */
 
-import { EXComponent } from '../common/interface/engine/ex-component';
-import { ccclass, XNode } from '../ccengine';
-import { EventMgr } from '../manager/event-mgr';
-import { XUIEvent } from '../common/define/event/ui-event';
-import { XGameEvent } from '../common/define/event/game-event';
+import { EXComponent } from '../../common/interface/engine/ex-component';
+import { ccclass, XNode } from '../../ccengine';
+import { EventMgr } from '../../manager/event-mgr';
+import { XUIEvent } from '../../common/define/event/ui-event';
+import { XGameEvent } from '../../common/define/event/game-event';
 
 @ccclass
 export class InputHandler extends EXComponent {

@@ -1,4 +1,4 @@
-import { ccclass } from '../ccengine';
+import { ccclass } from '../../ccengine';
 import { MapItem } from './map-item';
 
 @ccclass

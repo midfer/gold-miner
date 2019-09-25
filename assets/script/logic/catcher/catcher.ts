@@ -5,13 +5,13 @@
  * Author: midf
  */
 
-import { EXComponent } from '../common/interface/engine/ex-component';
-import { ccclass, property, XCollider, XVec2, XNode } from '../ccengine';
-import { MapItem } from './map-item';
-import { XGameEvent } from '../common/define/event/game-event';
-import { CatcherSwing, ICatcherSwing } from '../common/interface/game/swing';
-import { ICatcherMovement, CatcherMovement } from '../common/interface/game/movement';
-import { CatcherCollector, ICatcherCollector } from '../common/interface/game/collector';
+import { EXComponent } from '../../common/interface/engine/ex-component';
+import { ccclass, property, XCollider, XVec2, XNode } from '../../ccengine';
+import { MapItem } from '../map-item/map-item';
+import { XGameEvent } from '../../common/define/event/game-event';
+import { ICatcherSwing, CatcherSwing } from './catcher-swing';
+import { ICatcherMovement, CatcherMovement } from './catcher-movement';
+import { ICatcherCollector, CatcherCollector } from './catcher-collector';
 
 export enum CatcherState {
     idle,                       // 空闲状态

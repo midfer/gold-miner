@@ -1,5 +1,5 @@
-import { Catcher } from '../../../logic/catcher';
-import { XVec2 } from '../../../ccengine';
+import { Catcher } from './catcher';
+import { XVec2 } from '../../ccengine';
 
 export interface ICatcherCollector {
     update(target: any): void;
