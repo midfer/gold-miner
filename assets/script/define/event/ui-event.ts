@@ -1,3 +1,3 @@
 export enum XUIEvent {
-    ClickShootBtn = 'ClickShootBtn',
+    ClickEmitBtn = 'ClickEmitBtn',
 }

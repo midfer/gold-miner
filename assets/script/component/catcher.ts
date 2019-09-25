@@ -5,12 +5,13 @@
  * Author: midf
  */
 
-import { EXComponent } from './../define/engine/ex-component';
+import { EXComponent } from '../interface/engine/ex-component';
 import { ccclass, property, XCollider, XVec2, XNode } from '../ccengine';
-import { EventMgr } from '../manager/event-mgr';
-import { XUIEvent } from '../define/event/ui-event';
 import { MapItem } from './map-item';
 import { XGameEvent } from '../define/event/game-event';
+import { CatcherSwing, ICatcherSwing } from '../interface/game/swing';
+import { ICatcherMovement, CatcherMovement } from '../interface/game/movement';
+import { CatcherCollector, ICatcherCollector } from '../interface/game/collector';
 
 export enum CatcherState {
     idle,                       // 空闲状态
@@ -24,31 +25,47 @@ export const POSITION_ERROR: number = 0.001;    // 坐标允许误差
 @ccclass
 export class Catcher extends EXComponent {
     @property
-    public speed: number = 1;
+    public swingSpeed: number = 1;
+    @property
+    public swingRange: number = 90;
+    @property
+    public moveSpeed: number = 5;
     @property
     public maxDistance: number = 200;
 
-    private velocity: XVec2 = XVec2.ZERO;
+    public target: MapItem;
     private originPos: XVec2;
-    private target: MapItem;
     private state: CatcherState = CatcherState.idle;
 
-    public getSpeed(): number {
+    private swing: ICatcherSwing;
+    private movement: ICatcherMovement;
+    private collector: ICatcherCollector;
+
+    public getActualMoveSpeed(): number {
         if (this.target) {
-            return this.speed / this.target.weight;
+            return this.moveSpeed / this.target.weight;
         }
 
-        return this.speed;
+        return this.moveSpeed;
     }
 
-    public onCollisionEnter(other: XCollider, self: XCollider): void {
-        this.catchSomething(other.node);
-        this.collect();
+    public isCatchingTarget(): boolean {
+        return !!this.target;
     }
 
     protected onLoad(): void {
-        this.originPos = this.node.position;
-        EventMgr.on(XUIEvent.ClickShootBtn, this.go, this);
+        this.storeOriginPosition();
+        this.swing = new CatcherSwing();
+        this.movement = new CatcherMovement();
+        this.collector = new CatcherCollector();
+    }
+
+    protected onEnable(): void {
+        this.addEventListenter();
+    }
+
+    protected onDisable(): void {
+        this.removeEventListener();
     }
 
     protected update(dt: number): void {
@@ -57,28 +74,48 @@ export class Catcher extends EXComponent {
 
     protected fixedUpdate(dt: number): void {
         super.fixedUpdate(dt);
+        this.swing.update(this);
+        this.movement.update(this);
+        this.collector.update(this);
         this.updateState();
+    }
+
+    protected onCollisionEnter(other: XCollider, self: XCollider): void {
+        this.catchTarget(other.node);
+        this.collect();
+    }
+
+    private storeOriginPosition(): void {
+        this.originPos = this.node.position;
+    }
+
+    private addEventListenter(): void {
+        this.node.on(XGameEvent.EmitCatcher, this.go, this);
+    }
+
+    private removeEventListener(): void {
+        this.node.off(XGameEvent.EmitCatcher, this.go, this);
+    }
+
+    private moving(): boolean {
+        return this.state !== CatcherState.idle;
     }
 
     private updateState(): void {
         switch (this.state) {
             case CatcherState.going: {
-                this.updateSelfPosition();
                 if (this.exceedMaxDistance()) {
                     this.back();
                 }
                 break;
             }
             case CatcherState.backing: {
-                this.updateSelfPosition();
                 if (this.nearOriginPosition()) {
                     this.renew();
                 }
                 break;
             }
             case CatcherState.collecting: {
-                this.updateSelfPosition();
-                this.updateTargetPosition();
                 if (this.nearOriginPosition()) {
                     this.completeCollection();
                 }
@@ -89,19 +126,9 @@ export class Catcher extends EXComponent {
         }
     }
 
-    private catchSomething(node: XNode): void {
+    private catchTarget(node: XNode): void {
         this.target = node.getComponent(MapItem);
         this.target.beenCaught();
-    }
-
-    private updateSelfPosition(): void {
-        this.node.x += this.velocity.x * this.getSpeed();
-        this.node.y += this.velocity.y * this.getSpeed();
-    }
-
-    private updateTargetPosition(): void {
-        this.target.node.x += this.velocity.x * this.getSpeed();
-        this.target.node.y += this.velocity.y * this.getSpeed();
     }
 
     private nearOriginPosition(): boolean {
@@ -122,40 +149,38 @@ export class Catcher extends EXComponent {
     }
 
     private go(): void {
-        if (!this.velocity.equals(XVec2.ZERO)) {
+        if (this.moving()) {
             return;
         }
 
-        let vec: XVec2 = new XVec2(0, -1);
-        vec.rotateSelf(this.node.angle * Math.PI / 180);
-        this.velocity = vec;
+        this.swing.stop();
+        this.movement.goForward(this.node.angle);
         this.changeState(CatcherState.going);
-    }
-
-    private back(): void {
-        this.velocity.negSelf();
-        this.changeState(CatcherState.backing);
-    }
-
-    private renew(): void {
-        this.velocity = XVec2.ZERO;
-        this.changeState(CatcherState.idle);
-        EventMgr.dispatch(XGameEvent.PlyCompleted);
-    }
-
-    private collect(): void {
-        this.velocity.negSelf();
-        this.changeState(CatcherState.collecting);
-    }
-
-    private completeCollection(): void {
-        EventMgr.dispatch(XGameEvent.CollectedMapItem, this.target);
-        this.renew();
-        this.destroyMapItem();
     }
 
     private destroyMapItem(): void {
         this.target.node.destroy();
         this.target = null;
+    }
+
+    private back(): void {
+        this.movement.retreat();
+        this.changeState(CatcherState.backing);
+    }
+
+    private renew(): void {
+        this.swing.start();
+        this.movement.stop();
+        this.changeState(CatcherState.idle);
+    }
+
+    private collect(): void {
+        this.movement.retreat();
+        this.changeState(CatcherState.collecting);
+    }
+
+    private completeCollection(): void {
+        this.renew();
+        this.destroyMapItem();
     }
 }

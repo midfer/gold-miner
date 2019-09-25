@@ -10,3 +10,4 @@ export const xSystemEvent: XSystemEvent = cc.systemEvent;
 export class XEvent extends cc.Event {}
 export class XEventKeyboard extends cc.Event.EventKeyboard {}
 export class XMacro extends cc.macro {}
+export class XEventCustom extends cc.Event.EventCustom {}

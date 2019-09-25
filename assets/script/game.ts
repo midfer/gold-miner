@@ -7,7 +7,7 @@
 
 import { EventMgr } from './manager/event-mgr';
 import { xSystemEvent, XSystemEvent, XEvent, XCollisionManager, ccclass, property, XEventKeyboard, XMacro } from './ccengine';
-import { EXComponent } from './define/engine/ex-component';
+import { EXComponent } from './interface/engine/ex-component';
 import { XUIEvent } from './define/event/ui-event';
 
 @ccclass
@@ -42,7 +42,7 @@ export class Game extends EXComponent {
     private onKeyDown(event: XEventKeyboard): void {
         switch (event.keyCode) {
             case XMacro.KEY.space:
-                EventMgr.dispatch(XUIEvent.ClickShootBtn);
+                EventMgr.dispatch(XUIEvent.ClickEmitBtn);
                 break;
         }
     }
