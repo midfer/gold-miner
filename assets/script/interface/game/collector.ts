@@ -1,4 +1,4 @@
-import { Catcher } from '../../component/catcher';
+import { Catcher } from '../../logic/catcher';
 import { XVec2 } from '../../ccengine';
 
 export interface ICatcherCollector {

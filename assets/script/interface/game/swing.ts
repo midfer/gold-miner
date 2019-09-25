@@ -1,4 +1,4 @@
-import { Catcher } from '../../component/catcher';
+import { Catcher } from '../../logic/catcher';
 import { XNode } from '../../ccengine';
 
 export enum SwingDirection {

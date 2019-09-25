@@ -1,5 +1,5 @@
 import { XVec2 } from '../../ccengine';
-import { Catcher } from '../../component/catcher';
+import { Catcher } from '../../logic/catcher';
 
 export interface IMovement {
     update(target: any): void;
