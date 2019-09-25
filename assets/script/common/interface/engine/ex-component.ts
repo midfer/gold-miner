@@ -5,7 +5,7 @@
 * Author: midf
 */
 
-import { XComponent } from '../../ccengine';
+import { XComponent } from '../../../ccengine';
 
 export class EXComponent extends XComponent {
     protected ms_per_update: number = 20;          // 更新间隔 ms

@@ -7,8 +7,8 @@
 
 import { EventMgr } from './manager/event-mgr';
 import { xSystemEvent, XSystemEvent, XEvent, XCollisionManager, ccclass, property, XEventKeyboard, XMacro } from './ccengine';
-import { EXComponent } from './interface/engine/ex-component';
-import { XUIEvent } from './define/event/ui-event';
+import { EXComponent } from './common/interface/engine/ex-component';
+import { XUIEvent } from './common/define/event/ui-event';
 
 @ccclass
 export class Game extends EXComponent {

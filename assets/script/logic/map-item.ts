@@ -1,6 +1,6 @@
-import { EXComponent } from '../interface/engine/ex-component';
+import { EXComponent } from '../common/interface/engine/ex-component';
 import { ccclass, property } from '../ccengine';
-import { Catchable } from '../interface/game/catchable';
+import { Catchable } from '../common/interface/game/catchable';
 
 @ccclass
 export class MapItem extends EXComponent implements Catchable {

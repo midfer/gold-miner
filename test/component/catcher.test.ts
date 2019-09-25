@@ -4,7 +4,7 @@ import { Catcher, CatcherState, POSITION_ERROR } from '../../assets/script/compo
 import { XVec2 } from '../../assets/script/ccengine';
 import { MapItem } from '../../assets/script/component/map-item';
 import { EventMgr } from '../../assets/script/manager/event-mgr';
-import { XGameEvent } from '../../assets/script/define/event/game-event';
+import { XGameEvent } from '../../assets/script/common/define/event/game-event';
 
 let catcher: Catcher = null;
 beforeEach(() => {

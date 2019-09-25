@@ -1,5 +1,5 @@
-import { Catcher } from '../../logic/catcher';
-import { XNode } from '../../ccengine';
+import { Catcher } from '../../../logic/catcher';
+import { XNode } from '../../../ccengine';
 
 export enum SwingDirection {
     Clockwise = -1,
