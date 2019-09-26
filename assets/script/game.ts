@@ -16,7 +16,6 @@ export class Game extends EXComponent {
     public debug: boolean = false;
 
     protected onLoad(): void {
-        cc.game.addPersistRootNode(this.node);
         this.setupCollisionSystem();
         this.setupManagers();
     }

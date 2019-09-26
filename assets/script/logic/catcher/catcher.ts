@@ -89,6 +89,10 @@ export class Catcher extends EXComponent {
         this.originPos = this.node.position;
     }
 
+    private resetPosition(): void {
+        this.node.position = this.originPos;
+    }
+
     private addEventListenter(): void {
         this.node.on(XGameEvent.EmitCatcher, this.go, this);
     }
@@ -132,7 +136,7 @@ export class Catcher extends EXComponent {
     }
 
     private nearOriginPosition(): boolean {
-        return this.node.position.fuzzyEquals(this.originPos, 0.001);
+        return this.node.position.fuzzyEquals(this.originPos, 3);
     }
 
     private exceedMaxDistance(): boolean {
@@ -169,6 +173,7 @@ export class Catcher extends EXComponent {
     }
 
     private renew(): void {
+        this.resetPosition();
         this.swing.start();
         this.movement.stop();
         this.changeState(CatcherState.idle);

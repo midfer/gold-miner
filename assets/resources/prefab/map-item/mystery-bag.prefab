@@ -18,7 +18,7 @@
     "_parent": null,
     "_children": [],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 2
@@ -53,8 +53,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 197.856,
-      "y": -98.716,
+      "x": 142.998,
+      "y": -218.882,
       "z": 0
     },
     "_scale": {
@@ -72,7 +72,7 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "groupIndex": 0,
+    "groupIndex": 2,
     "_id": ""
   },
   {
@@ -146,7 +146,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "b09d953d-26bf-4959-aab0-e388a6fb30de"
     },
     "fileId": "9bsendhb5KXbWB7kYrxmaZ",
     "sync": false

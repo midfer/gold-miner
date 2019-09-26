@@ -13,12 +13,12 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "little-rock",
+    "_name": "Arrow",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 2
@@ -28,10 +28,13 @@
       },
       {
         "__id__": 4
+      },
+      {
+        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 6
     },
     "_opacity": 255,
     "_color": {
@@ -43,18 +46,18 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 28,
+      "height": 33
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 1
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 127.15,
-      "y": -110.023,
+      "x": 20.087,
+      "y": 174.086,
       "z": 0
     },
     "_scale": {
@@ -70,14 +73,16 @@
       "z": 0
     },
     "_skewX": 0,
-    "_skewY": 0,
+    "_skewY": 1,
     "_is3DNode": false,
-    "groupIndex": 2,
+    "groupIndex": 1,
+    "_rotationX": 0,
+    "_rotationY": 0,
     "_id": ""
   },
   {
     "__type__": "cc.Sprite",
-    "_name": "little-rock<Sprite>",
+    "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
@@ -91,10 +96,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e063bcfa-b948-4c8c-ac62-90ecf4a0cd86"
+      "__uuid__": "0bbff53e-afb1-49b5-94e4-48bf282d96d8"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -119,25 +124,37 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -16.5
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 28,
+      "height": 33
     },
     "_id": ""
   },
   {
-    "__type__": "6b828t2c7JE1Z5TfyQpf+pG",
+    "__type__": "baff5cRaAtCFZbXhdT1e8rn",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "weight": 1,
-    "point": 10,
+    "swingSpeed": 3,
+    "swingRange": 90,
+    "moveSpeed": 5,
+    "maxDistance": 200,
+    "_id": ""
+  },
+  {
+    "__type__": "76438zLDUlFxbr9xLDg5pRl",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
     "_id": ""
   },
   {
@@ -146,9 +163,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "c086dc2c-9a01-4183-9646-c17fc88e8a44"
+      "__id__": 0
     },
-    "fileId": "04lCfdMepLL6d5uVPJ6X9X",
+    "fileId": "17UOnmuT9N0JotZlV0fmfN",
     "sync": false
   }
 ]

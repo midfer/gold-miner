@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "little-rock",
+    "_name": "little-diamond",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -43,8 +43,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 37,
+      "height": 35
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -53,8 +53,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 127.15,
-      "y": -110.023,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -72,12 +72,14 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "groupIndex": 2,
+    "groupIndex": 0,
+    "_rotationX": 0,
+    "_rotationY": 0,
     "_id": ""
   },
   {
     "__type__": "cc.Sprite",
-    "_name": "little-rock<Sprite>",
+    "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
@@ -91,10 +93,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e063bcfa-b948-4c8c-ac62-90ecf4a0cd86"
+      "__uuid__": "8d2c23ba-9d08-4f8a-bca5-e352e786de54"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -123,8 +125,8 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 37,
+      "height": 35
     },
     "_id": ""
   },
@@ -137,7 +139,7 @@
     },
     "_enabled": true,
     "weight": 1,
-    "point": 10,
+    "point": 800,
     "_id": ""
   },
   {
@@ -146,9 +148,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "c086dc2c-9a01-4183-9646-c17fc88e8a44"
+      "__uuid__": "bccb822f-4397-46c1-9706-c8e643502143"
     },
-    "fileId": "04lCfdMepLL6d5uVPJ6X9X",
+    "fileId": "90NJss2jBDrZRrxAU20bD7",
     "sync": false
   }
 ]
