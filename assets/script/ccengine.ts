@@ -9,5 +9,10 @@ export class XSystemEvent extends cc.SystemEvent {}
 export const xSystemEvent: XSystemEvent = cc.systemEvent;
 export class XEvent extends cc.Event {}
 export class XEventKeyboard extends cc.Event.EventKeyboard {}
+export class XMouseEvent extends cc.Event.EventMouse {}
 export class XMacro extends cc.macro {}
 export class XEventCustom extends cc.Event.EventCustom {}
+export class XLoader extends cc.loader {}
+export class XScrollView extends cc.ScrollView {}
+export const instantiate: Function = cc.instantiate;
+export class XPrefab extends cc.Prefab {}
