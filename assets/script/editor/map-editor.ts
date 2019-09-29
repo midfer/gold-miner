@@ -18,7 +18,14 @@ export class MapEditor extends EXComponent {
     private map: Array<MapItemConfig>;
 
     public exportMapData(): void {
-        console.log(this.map);
+        let a: HTMLAnchorElement = document.createElement('a');
+        let b: Blob = new Blob([JSON.stringify(this.map, null, 4)]);
+        let url: string = window.URL.createObjectURL(b);
+        a.download = 'level1.json';
+        a.href = url;
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.parentNode.removeChild(a);
     }
 
     protected onLoad(): void {
